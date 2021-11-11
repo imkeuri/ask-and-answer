@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row" style="width: 100%;">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card text-center" style="padding: 20px;">
+                <h3>Register</h3>
+                <br>
+                <app-loading *ngIf="loading"></app-loading>
+                <form [formGroup] = "register" (ngSubmit)='registerUser()'>
+
+                    <div class="form-group mb-3" style="text-align: start;">
+                        
+                        <input type="text" class="form-control" placeholder="User" formControlName="user" >
+
+                        <span class="text text-danger ml-2"
+                        *ngIf="register.get('user')!.invalid && register.get('user')!.touched"> 
+                       *The user <strong>is required</strong>*
+                     </span>
+
+                    </div>
+
+                    <div class="form-group mb-3" style="text-align: start;">
+
+                        <input type="password" class="form-control" placeholder="Password" formControlName="password" minlength="4">
+                        
+                        <span class="text text-danger ml-2"
+                        *ngIf="register.get('password')!.invalid && register.get('password')!.touched">
+
+                       *The password <strong>is required*</strong>
+
+                    </span>
+
+                    <span class="text text-danger ml-2" 
+                    *ngIf="register.get('password')!.errors?.minlength && register.get('password')!.touched">
+                    *The password <strong> is too weak</strong>*
+                     </span>
+            
+                    </div>
+
+                    <div class="form-group mb-3" style="text-align: start;">
+                        <input type="password" class="form-control" placeholder="Confirm Password " formControlName="confirmPassword" >
+                        <span class="text text-danger ml-2"
+                        *ngIf="register.hasError('notSame') && register.get('confirmPassword')!.touched">
+                            Password <strong>dont match</strong>
+                        </span>
+
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <button class="btn btn-primary me-2" type="submit" >Register</button>
+                        <button class="btn btn-secondary" routerLink="/start/login">Back</button>
+                    </div>
+
+                </form>
+             </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <form [formGroup]="newAsk">
+        <div class="form-group input-group-lg">
+            <input type="text" class="form-control" placeholder="Insert Question" formControlName="title">
+            <span class="text-danger ml-2"
+                   *ngIf="newAsk.get('title')!.invalid && newAsk.get('title')!.touched">
+                       The Title <strong> is required</strong>
+                   </span>
+        </div>
+    
+        <div formArrayName="answer" *ngFor="let item of getAnswer.controls; let i = index">
+
+            <div class="mt-3 input-group" [formGroupName]="i" >
+               
+                <input type="text" class="form-control" placeholder="Answer {{i+ 1}}" formControlName="description">
+              
+                <div class="input-group-text">
+                      <input type="radio" name="isCorrect" (change)="setAnswerValid(i)" [value]="i" formControlName="isCorrect">
+               </div>
+             <span class="bi bi-trash-fill delete-icon" (click)="deleteAnswerField(i)"></span>
+             <span class="text-danger ml-2"
+             *ngIf="item.get('description')!.invalid && item.get('description')!.touched">
+                 The description {{i+1}} <strong> is required</strong>
+             </span>
+            </div>   
+
+        </div>
+
+
+
+        
+        <span class="bi bi-plus-circle-fill add-btn" (click)="addAnswer()"> Add answer</span>
+        <br>
+        <br>
+        <button class="btn btn-primary float-end" 
+        [disabled]="newAsk.invalid" (click)="addAsk()">ADD</button>
+    </form>
+</div>
+
+

@@ -1,0 +1,50 @@
+<div class="text-center">
+    <app-loading *ngIf="loading"></app-loading>
+</div>
+<div class="container-fluid px-4"> 
+        <div class="row ">
+            <div class=" col-6  ">
+                <h3 class="text-center">
+                    Questions
+                </h3>
+                <hr>
+                <div class="carb mb-2" *ngFor="let quest of listAsk; let i = index">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div style="width: 70%;">
+                            <h5>{{quest.Description}}</h5>
+                        </div>
+                        <div style="width: 30%;">
+                            <button class="btn btn-primary btn-sm ml-1 mt-1"(click)="quest.hide =! quest.hide"><i class="bi bi-card-text"></i></button>
+                            <button class="btn btn-danger btn-sm ml-1 mt-1" (click)="deleteQuest(i)"><i class="bi bi-trash-fill"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body" [hidden]="quest.hide">
+                        <ul class="list-group">
+                            <li class="list-group-item" *ngFor="let respuesta of quest.Answers"
+                                [ngClass]="{'list-group-item-success': respuesta.isCorrect ==true}">
+                                {{respuesta.Description}}
+                                <span class="material-icons" *ngIf="respuesta.isCorrect ==  true">
+                                    <i class="bi bi-check2-circle"></i></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            
+                <div *ngIf="listAsk.length == 0">
+                    <h6>No Questions</h6>
+                </div>
+            </div>
+          
+            <div class=" col-6 ">
+                <h3 class="text-center">
+                    New Questions
+                </h3>
+                <hr>
+                <app-new-ask (sendAsk)="saveAsk($event)"></app-new-ask>
+            </div>    
+        </div>
+ 
+</div>
+<button class="btn btn-success btn-lg float-end mt-2" (click)="saveQuest()" [disabled]="listAsk.length == 0">FINISH QUEST</button>
+
+

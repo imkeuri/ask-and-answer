@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="card text-center" style="width: 100%; padding: 20px; min-width: 200px;" >
+        
+        <div class="col-lg-6 offset-lg-3">
+            <input class="form-control" type="text"  
+            placeholder="Enter your name " style="font-size: x-large;" [(ngModel)]="nameParicipant"> <!-- Lo que estamos haciendo aqui es el doble binding-->
+        </div>
+
+        <div class="mt-4">
+            <button class="btn btn-secondary btn-lg me-2" routerLink="/start/list-quest">Back</button>
+            <button class="btn btn-primary btn-lg " (click)="next()" [disabled]="nameParicipant == null">Next</button>
+        </div>
+        
+    </div>
+</div>

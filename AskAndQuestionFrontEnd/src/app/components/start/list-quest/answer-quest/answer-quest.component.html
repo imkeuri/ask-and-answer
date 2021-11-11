@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="card">
+        <h4>Result</h4>
+        <p class="card-text">This is your result</p>
+        <div *ngFor="let ask of quest.asks;  let i = index">
+            <div class="card-header">
+                <b>{{ask.description}}</b>
+               
+            </div>
+            <ul class="list-group" *ngFor="let respuesta of ask.answers;">
+                <li class="list-group-item" [ngClass]="{'list-group-item-success': respuesta.isCorrect == true && answerUSer[i] == respuesta.id,
+                                                        'list-group-item-danger' : respuesta.isCorrect == false && answerUSer[i] == respuesta.id}">
+                    {{respuesta.description}}
+                    <span class="bi bi-check2-circle correct" *ngIf="respuesta.isCorrect == true && answerUSer[i] == respuesta.id" ></span>
+                    <span class="bi bi-dash-circle inCorrect" *ngIf="respuesta.isCorrect == false && answerUSer[i] == respuesta.id"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 offset-lg-4 mt-2">
+                <button class="btn btn-primary btn-lg btn-block" routerLink="/start">Back</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="container-fluid jumbotron text-center">
+    <div class="row">
+        <h1>Welcome {{user}}</h1>
+        <p class="lead text-muted"> <strong>Quest's</strong></p>
+        <div class="col-lg-6 offset-lg-3">
+        <button class="btn btn-success btn-block btn-ques"
+                         routerLink ="/dashboard/new-quest/step-one">New Quest</button>
+        </div> 
+    </div>
+</div>   
+       
+    <div class="text-center" style="margin-top: -30px;">
+        <app-loading *ngIf="loading"></app-loading>
+    </div>
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top: 50px;" >
+        <div class="col" *ngFor="let quest of listQuest">
+          <div class="card text-center bg-light">
+            <div class="card-body ">
+              <h5 class="card-title">{{quest.name}}</h5>
+              <p class="card-text">{{quest.description}}</p>
+              <button class="btn btn-success radius mb-2" routerLink="/dashboard/seeQuest/{{quest.id}}">See</button>
+              <button class="btn btn-danger radius"(click)="deleteQuest(quest.id)">Delete</button>
+            </div>
+          </div>
+        
+      </div>
+
+  
+
+    <div *ngIf="listQuest?.length == 0 && loading == false">No quest to show</div>
+  
+    
+    
+         
+      
+  

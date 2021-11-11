@@ -1,0 +1,29 @@
+<div class="text-center">
+    <app-loading *ngIf="loading"> </app-loading>
+</div>
+
+<div class="text-center" *ngIf="!loading">
+    <h4 class="card-title">{{quest.name | uppercase}}</h4>
+    <p class="card-text">{{quest.description | uppercase}}</p>
+    <hr>
+    <div *ngFor="let ask of quest.asks">
+        <div class="card-header">
+            <b>{{ask.description}}</b>
+        </div>
+        <ul class="list-group" *ngFor="let answers of ask.answers">
+            <li class="list-group-item" [ngClass]="{'list-group-item-success': answers.isCorrect}">
+                {{answers.description}}
+                <span class="bi bi-check2-circle material-icons"
+                *ngIf="answers.isCorrect"></span>
+            </li>
+           
+        </ul>
+        <br>
+    </div>
+    <br>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="btn btn-primary" routerLink="/dashboard">Back</button>
+      </div>
+      <br>
+</div>
+

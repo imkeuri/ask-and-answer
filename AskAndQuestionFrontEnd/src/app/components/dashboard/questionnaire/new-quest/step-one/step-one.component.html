@@ -1,0 +1,25 @@
+<div class="container-fluid"> 
+    <div class="row">
+        <div class="col ">
+            <h3 class="text-center">Data of quest</h3>
+            <br>
+            <form [formGroup]="dataQuest" (ngSubmit)="stepOne()">
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" placeholder="Introduce your title" formControlName="Name">
+                     <span class="text-danger ml-2"
+                   *ngIf="dataQuest.get('Name')!.invalid && dataQuest.get('Name')!.touched">
+                       The title <strong> is required</strong>
+                   </span>
+                </div>
+                <div class="form-group mb-3">
+                    <textarea class="form-control" placeholder="Insert a description of you quest" formControlName="Description"></textarea>
+                    <span class="text-danger mb-2"
+                    *ngIf="dataQuest.get('Description')!.invalid && dataQuest.get('Description')!.touched">
+                        The description <strong> is required</strong>
+                    </span>
+                </div>
+                <button [disabled]="dataQuest.invalid" class="btn btn-success float-end" type="submit">Next</button>
+            </form>
+        </div>
+    </div>
+</div>

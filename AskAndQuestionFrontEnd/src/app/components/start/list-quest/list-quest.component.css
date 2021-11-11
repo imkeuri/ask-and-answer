@@ -1,0 +1,16 @@
+.container{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-ing{
+    margin-top: 8px;
+    color: white;
+}
+
+.row{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

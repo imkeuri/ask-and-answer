@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="card text-center" style="padding: 20px;">
+           <strong><h3>Log in</h3></strong> 
+            <app-loading *ngIf="loading"></app-loading>
+            <form [formGroup]="login" (ngSubmit)="log()">
+
+                <div class="mb-3 form-group" style="text-align: start;">
+                    <input  type="text" class="form-control" placeholder="User" formControlName="user" required>               
+                    <span class="text text-danger ml-2"
+                        *ngIf="login.get('user')!.invalid && login.get('user')!.touched"> 
+                        <small>*The user <strong>is required</strong>*</small>
+                    </span>
+                </div>
+
+
+                <div class=" mb-3 form-group" style="text-align: start;">
+                    <input type="password" class="form-control" placeholder="Password" formControlName="password" >
+                    <span class="text text-danger ml-2"
+                    *ngIf="login.get('password')!.invalid && login.get('password')!.touched">                    
+                        <small>*The password <strong>is required</strong>*</small>
+                    </span>
+                </div>
+           
+                <div class="mb-3 form-group">
+                    <button class="btn btn-primary me-2" type="submit" [disabled]="login.invalid" >Enter</button>
+                    <button class="btn btn-outline-secondary " routerLink="/welcome">Back</button>
+                </div>
+
+                <div class="form-group">
+                    <a style="color: #dc3545; cursor: pointer;" routerLink="/start/registrer">Create account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
