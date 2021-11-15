@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TuG6ddcNHiILlh3Ns2tLM3h356m8sO0ZyeWWH5sbh5q37UxyY0TzPrW23lppnyuUnnhIJYvA3yTxxjqMfjnpnw==",
+  "dgSpecHash": "S/xsQ6KA2LkHnepA5ZqgiHR0b/Gk0R2WFJLOblEdnxEc+5/RAR5aGkuvpxDETEpyyE2BstaDSuF5KF3vCkBXOg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\keury\\Desktop\\Ask And Question\\BackEnd\\BackEnd\\BackEnd.csproj",
+  "projectFilePath": "C:\\Users\\keury\\Desktop\\Ask And Question\\backend\\backend\\BackEnd.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\keury\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\keury\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

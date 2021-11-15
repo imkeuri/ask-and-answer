@@ -18,9 +18,11 @@ namespace BackEnd.Controllers
     public class AnswerQuestController : ControllerBase
     {
         private readonly IAnswerQuestService answerQuestService;
-        public AnswerQuestController(IAnswerQuestService answerQuestService)
+        private readonly IQuestService questService;
+        public AnswerQuestController(IAnswerQuestService answerQuestService, IQuestService questService)
         {
             this.answerQuestService = answerQuestService;
+            this.questService = questService;
         }
 
         [HttpPost]
@@ -40,8 +42,9 @@ namespace BackEnd.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    
         [HttpGet("{idQuest}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> Get(int idQuest)
         {
             try
@@ -58,7 +61,7 @@ namespace BackEnd.Controllers
                     return BadRequest(new { message = "No existen datos" });
                 }
 
-                return Ok();
+                return Ok(list);
             }
             catch (Exception ex)
             {
@@ -66,5 +69,52 @@ namespace BackEnd.Controllers
             }
         }
 
+        [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> Delete(int id)
+        
+        {
+            try
+            {
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+
+                int idUser = JwtConfigurator.GetTokenUsuarioId(identity);
+                var delete = await answerQuestService.SearchQuestAnswer(id, idUser);
+                
+                if (delete == null)
+                {
+                    return BadRequest(new { message = "Error al buscar la repuesta" });
+                }
+
+                 await  answerQuestService.DeleteQuestAnser(delete);
+
+                return Ok(new { message = $"Answer {id} deleted succefull" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Route("GetAnswerById/{id}")]
+        [HttpGet]
+     //   [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GetAnswerById(int id){
+            try
+            {
+                 var idQuest = await answerQuestService.GetQuestId(id);
+
+                 var quest = await questService.GetQuest(idQuest);
+                
+                 var lisAnswer = await answerQuestService.GetAnswerDetailsList(id);
+                
+                return Ok(new{quest = quest, answer = lisAnswer});
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
+        }
     }
 }

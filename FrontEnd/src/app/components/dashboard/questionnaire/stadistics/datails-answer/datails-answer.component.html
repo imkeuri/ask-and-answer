@@ -1,0 +1,28 @@
+<div class="text-center">
+    <app-loading *ngIf="loading"></app-loading>
+</div>
+
+<div class="text-center" *ngIf="quest != null"> 
+    <h4 class="card-title">{{quest.name}}</h4>
+    <p class="card-text">{{quest.description}}</p>
+    <hr>
+    <div  *ngFor="let ask of quest.asks; let i = index" style="margin: bottom 10px;">
+        <div class="card-header">
+            <b>{{ask.description}}</b>      
+        </div>
+        <ul class="list-group" *ngFor="let answer of ask.answers">
+            <li class="list-group-item" [ngClass]="{'list-group-item-success': answer.isCorrect == true ,
+                                                    'list-group-item-danger' : answer.isCorrect == false}">
+                {{answer.description}} {{answer.id}} {{answerUser[i]}}
+                <span class="bi bi-check2-circle correct" *ngIf="answer.isCorrect == true " ></span>
+                <span class="bi bi-dash-circle inCorrect" *ngIf="answer.isCorrect == false"></span>
+            </li>
+           
+        </ul>
+    </div>
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="col-lg-4 offset-lg-4">
+            <button class="btn btn-primary btn-lg btn-block" routerLink="dashboar/stadistics/{{quest.id}}">back</button>
+        </div>
+    </div>
+</div>

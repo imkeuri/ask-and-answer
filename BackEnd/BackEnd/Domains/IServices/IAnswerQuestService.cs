@@ -10,5 +10,10 @@ namespace BackEnd.Domains.IServices
     {
         Task SaveAnswerQuest(QuestAnswer questAnswer);
         Task<List<QuestAnswer>> GetQuestAnswers(int idQuest, int idUser);
+        Task<QuestAnswer> SearchQuestAnswer(int id, int idUser);
+        Task DeleteQuestAnser(QuestAnswer questAnswer);       
+        Task <int> GetQuestId(int idAnswer);
+        Task<List<QuestAnswerDetail>> GetAnswerDetailsList (int idAnswer);
+        
     }
 }

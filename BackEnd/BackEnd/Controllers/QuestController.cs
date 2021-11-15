@@ -56,6 +56,8 @@ namespace BackEnd.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        
+        
         [Route("GetListQuestByUser")]
         [HttpGet]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -78,6 +80,8 @@ namespace BackEnd.Controllers
                 return BadRequest(ex.Message);
             }
         }
+      
+        
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -116,6 +120,8 @@ namespace BackEnd.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
         [Route("GetList")]
         [HttpGet]
         public async Task<IActionResult> GetListQuest()

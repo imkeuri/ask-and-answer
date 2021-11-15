@@ -68,7 +68,8 @@ namespace BackEnd.Persistence.Repositories
         public async  Task<Quest> SearchQuest(int id, int idUser)
         {
             var quest = await _contex.Quest.Where(x => x.Id == id
-                                        && x.Active == 1 && x.UsuarioId == idUser).FirstOrDefaultAsync();
+                                                    && x.Active == 1
+                                                    && x.UsuarioId == idUser).FirstOrDefaultAsync();
             return quest;
         }
     }

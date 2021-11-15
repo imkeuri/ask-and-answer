@@ -14,7 +14,7 @@ namespace BackEnd.Persistence.Context
         public DbSet<Quest> Quest { get; set; }
         public DbSet<Answer> Answer { get; set; }
         public DbSet<QuestAnswer> QuestAnswer{ get; set; }
-        public DbSet<QuestAnswer> QuestAnswerDetail { get; set; }
+        public DbSet<QuestAnswerDetail> QuestAnswerDetail { get; set; }
         public AplicationDbContext(DbContextOptions<AplicationDbContext> options):base(options)
         {
 
